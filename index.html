@@ -89,16 +89,16 @@
                         </div>
                     </div>
                     <p id="errorMsg" class="text-red-600 text-[10px] font-bold hidden mb-2">❌ 不可能的三角形！(兩邊之和須大於第三邊)</p>
-                    <button onclick="generateTriangleFromInput()" class="w-full btn-pixel bg-yellow-300 py-1.5 font-bold text-xs">生成指定三角形</button>
+                    <button id="btnGenerate" class="w-full btn-pixel bg-yellow-300 py-1.5 font-bold text-xs">生成指定三角形</button>
                 </div>
 
                 <!-- 控制按鈕 -->
                 <div class="flex flex-col gap-2">
-                    <button onclick="toggle('angles')" id="btn-angles" class="flex items-center justify-between p-2 rounded toggle-active border-orange-500">
+                    <button id="btn-angles" class="flex items-center justify-between p-2 rounded toggle-active border-orange-500">
                         <div class="font-bold text-sm text-orange-700">顯示角度 (∠)</div>
                         <div id="led-angles" class="w-4 h-4 bg-orange-500 border-2 border-black"></div>
                     </button>
-                    <button onclick="toggle('sides')" id="btn-sides" class="flex items-center justify-between p-2 rounded toggle-inactive">
+                    <button id="btn-sides" class="flex items-center justify-between p-2 rounded toggle-inactive">
                         <div class="font-bold text-sm text-teal-700">顯示邊長 (L)</div>
                         <div id="led-sides" class="w-4 h-4 bg-gray-300 border-2 border-black"></div>
                     </button>
@@ -107,41 +107,41 @@
                 <hr class="border border-black my-1">
 
                 <div class="flex flex-col gap-1">
-                    <button onclick="toggle('circumcenter')" id="btn-circumcenter" class="flex items-center justify-between p-2 rounded toggle-inactive border-blue-600">
+                    <button id="btn-circumcenter" class="flex items-center justify-between p-2 rounded toggle-inactive border-blue-600">
                         <div class="font-bold text-sm text-blue-600">外心 (O)</div>
                         <div id="led-circumcenter" class="w-4 h-4 bg-gray-300 border-2 border-black"></div>
                     </button>
-                    <button onclick="toggle('circumLine')" id="btn-circumLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-blue-200">
+                    <button id="btn-circumLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-blue-200">
                         <div class="text-[10px] font-bold">└ 來源：中垂線 (區分標記)</div>
                         <div id="led-circumLine" class="w-3 h-3 bg-gray-300 border border-black"></div>
                     </button>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <button onclick="toggle('incenter')" id="btn-incenter" class="flex items-center justify-between p-2 rounded toggle-inactive border-purple-600">
+                    <button id="btn-incenter" class="flex items-center justify-between p-2 rounded toggle-inactive border-purple-600">
                         <div class="font-bold text-sm text-purple-600">內心 (I)</div>
                         <div id="led-incenter" class="w-4 h-4 bg-gray-300 border-2 border-black"></div>
                     </button>
-                    <button onclick="toggle('incenterLine')" id="btn-incenterLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-purple-200">
+                    <button id="btn-incenterLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-purple-200">
                         <div class="text-[10px] font-bold">└ 來源：角平分線 (彩色點)</div>
                         <div id="led-incenterLine" class="w-3 h-3 bg-gray-300 border border-black"></div>
                     </button>
-                    <button onclick="toggle('incenterArea')" id="btn-incenterArea" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-purple-200">
+                    <button id="btn-incenterArea" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-purple-200">
                         <div class="text-[10px] font-bold">└ 性質：面積比 = a:b:c</div>
                         <div id="led-incenterArea" class="w-3 h-3 bg-gray-300 border border-black"></div>
                     </button>
                 </div>
 
                 <div class="flex flex-col gap-1">
-                    <button onclick="toggle('centroid')" id="btn-centroid" class="flex items-center justify-between p-2 rounded toggle-inactive border-red-600">
+                    <button id="btn-centroid" class="flex items-center justify-between p-2 rounded toggle-inactive border-red-600">
                         <div class="font-bold text-sm text-red-600">重心 (G)</div>
                         <div id="led-centroid" class="w-4 h-4 bg-gray-300 border-2 border-black"></div>
                     </button>
-                    <button onclick="toggle('centroidLine')" id="btn-centroidLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-red-200">
+                    <button id="btn-centroidLine" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-red-200">
                         <div class="text-[10px] font-bold">└ 來源：三邊中線 (區分標記)</div>
                         <div id="led-centroidLine" class="w-3 h-3 bg-gray-300 border border-black"></div>
                     </button>
-                    <button onclick="toggle('centroidArea')" id="btn-centroidArea" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-red-200">
+                    <button id="btn-centroidArea" class="sub-toggle flex items-center justify-between p-1.5 rounded toggle-inactive border-red-200">
                         <div class="text-[10px] font-bold">└ 性質：面積 1/3 Area</div>
                         <div id="led-centroidArea" class="w-3 h-3 bg-gray-300 border border-black"></div>
                     </button>
@@ -150,329 +150,346 @@
                 <hr class="border border-black my-1">
                 
                 <div class="flex flex-col gap-2 mt-auto">
-                    <button onclick="clearAll()" class="w-full btn-pixel bg-gray-200 py-2 font-bold text-xs">全部取消勾選</button>
-                    <button onclick="resetPoints()" class="w-full btn-pixel bg-red-300 py-2 font-bold text-xs">恢復預設位置</button>
+                    <button id="btnClearAll" class="w-full btn-pixel bg-gray-200 py-2 font-bold text-xs">全部取消勾選</button>
+                    <button id="btnReset" class="w-full btn-pixel bg-red-300 py-2 font-bold text-xs">恢復預設位置</button>
                 </div>
             </div>
         </div>
     </aside>
 
-    <main class="flex-grow flex items-center justify-center relative h-2/3 md:h-full overflow-hidden">
+    <main id="canvasParent" class="flex-grow flex items-center justify-center relative h-2/3 md:h-full overflow-hidden">
         <canvas id="geoCanvas"></canvas>
     </main>
 
     <script>
-        const canvas = document.getElementById('geoCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        const COLORS = {
-            red: '#ff0055', blue: '#0055ff', green: '#00aa00',
-            purple: '#aa00aa', orange: '#ea580c', teal: '#0f766e',
-            black: '#000000', grid: '#e5e7eb'
-        };
+        window.onload = function() {
+            const canvas = document.getElementById('geoCanvas');
+            const ctx = canvas.getContext('2d');
+            const parent = document.getElementById('canvasParent');
+            
+            const COLORS = {
+                red: '#ff0055', blue: '#0055ff', green: '#00aa00',
+                purple: '#aa00aa', orange: '#ea580c', teal: '#0f766e',
+                black: '#000000', grid: '#e5e7eb'
+            };
 
-        let state = {
-            points: [],
-            draggingIdx: null,
-            dragOffset: { x: 0, y: 0 },
-            toggles: {
-                angles: true, sides: false, 
-                circumcenter: false, circumLine: false,
-                incenter: false, incenterLine: false, incenterArea: false,
-                centroid: false, centroidLine: false, centroidArea: false
+            let state = {
+                points: [],
+                draggingIdx: null,
+                dragOffset: { x: 0, y: 0 },
+                toggles: {
+                    angles: true, sides: false, 
+                    circumcenter: false, circumLine: false,
+                    incenter: false, incenterLine: false, incenterArea: false,
+                    centroid: false, centroidLine: false, centroidArea: false
+                }
+            };
+
+            // --- 幾何工具 ---
+            const dist = (p1, p2) => Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+            const midpoint = (p1, p2) => ({ x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 });
+            const calcArea = (p1, p2, p3) => 0.5 * Math.abs(p1.x*(p2.y-p3.y) + p2.x*(p3.y-p1.y) + p3.x*(p1.y-p2.y));
+
+            const getCentroid = (p) => ({ x: (p[0].x+p[1].x+p[2].x)/3, y: (p[0].y+p[1].y+p[2].y)/3 });
+            const getIncenter = (p) => {
+                const a=dist(p[1],p[2]), b=dist(p[0],p[2]), c=dist(p[0],p[1]), peri=a+b+c;
+                return peri === 0 ? p[0] : { x: (a*p[0].x+b*p[1].x+c*p[2].x)/peri, y: (a*p[0].y+b*p[1].y+c*p[2].y)/peri };
+            };
+            const getCircumcenter = (p) => {
+                const [A, B, C] = p;
+                const D = 2 * (A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y));
+                if (Math.abs(D) < 0.1) return null;
+                const ASq = A.x**2+A.y**2, BSq = B.x**2+B.y**2, CSq = C.x**2+C.y**2;
+                return { x: (ASq*(B.y-C.y)+BSq*(C.y-A.y)+CSq*(A.y-B.y))/D, y: (ASq*(C.x-B.x)+BSq*(A.x-C.x)+CSq*(B.x-A.x))/D };
+            };
+            const getProjection = (P, A, B) => {
+                const v = { x: B.x-A.x, y: B.y-A.y }, w = { x: P.x-A.x, y: P.y-A.y }, lensq = v.x*v.x+v.y*v.y;
+                if (lensq === 0) return A;
+                const t = (w.x*v.x+w.y*v.y)/lensq;
+                return { x: A.x+v.x*t, y: A.y+v.y*t };
+            };
+
+            // --- 繪圖輔助 ---
+            function drawLabel(text, p, color = "black", bg = true, fontSize = 11) {
+                ctx.font = `bold ${fontSize}px Arial`;
+                const tw = ctx.measureText(text).width;
+                if(bg) {
+                    ctx.fillStyle = "rgba(255,255,255,0.95)";
+                    ctx.fillRect(p.x - tw/2 - 2, p.y - fontSize - 1, tw + 4, fontSize + 3);
+                }
+                ctx.fillStyle = color; ctx.textAlign = "center"; ctx.fillText(text, p.x, p.y - 1);
             }
-        };
 
-        const dist = (p1, p2) => Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
-        const midpoint = (p1, p2) => ({ x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 });
-        const calcArea = (p1, p2, p3) => 0.5 * Math.abs(p1.x*(p2.y-p3.y) + p2.x*(p3.y-p1.y) + p3.x*(p1.y-p2.y));
-
-        const getCentroid = (p) => ({ x: (p[0].x+p[1].x+p[2].x)/3, y: (p[0].y+p[1].y+p[2].y)/3 });
-        const getIncenter = (p) => {
-            const a=dist(p[1],p[2]), b=dist(p[0],p[2]), c=dist(p[0],p[1]), peri=a+b+c;
-            return peri === 0 ? p[0] : { x: (a*p[0].x+b*p[1].x+c*p[2].x)/peri, y: (a*p[0].y+b*p[1].y+c*p[2].y)/peri };
-        };
-        const getCircumcenter = (p) => {
-            const [A, B, C] = p;
-            const D = 2 * (A.x*(B.y-C.y) + B.x*(C.y-A.y) + C.x*(A.y-B.y));
-            if (Math.abs(D) < 0.1) return null;
-            const ASq = A.x**2+A.y**2, BSq = B.x**2+B.y**2, CSq = C.x**2+C.y**2;
-            return { x: (ASq*(B.y-C.y)+BSq*(C.y-A.y)+CSq*(A.y-B.y))/D, y: (ASq*(C.x-B.x)+BSq*(A.x-C.x)+CSq*(B.x-A.x))/D };
-        };
-        const getProjection = (P, A, B) => {
-            const v = { x: B.x-A.x, y: B.y-A.y }, w = { x: P.x-A.x, y: P.y-A.y }, lensq = v.x*v.x+v.y*v.y;
-            if (lensq === 0) return A;
-            const t = (w.x*v.x+w.y*v.y)/lensq;
-            return { x: A.x+v.x*t, y: A.y+v.y*t };
-        };
-
-        function drawLabel(text, p, color = "black", bg = true, fontSize = 11) {
-            ctx.font = `bold ${fontSize}px Arial`;
-            const tw = ctx.measureText(text).width;
-            if(bg) {
-                ctx.fillStyle = "rgba(255,255,255,0.95)";
-                ctx.fillRect(p.x - tw/2 - 2, p.y - fontSize - 1, tw + 4, fontSize + 3);
+            function fillTriangle(p1, p2, p3, color) {
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.lineTo(p3.x, p3.y); ctx.closePath();
+                ctx.fillStyle = color; ctx.fill();
             }
-            ctx.fillStyle = color; ctx.textAlign = "center"; ctx.fillText(text, p.x, p.y - 1);
-        }
 
-        function fillTriangle(p1, p2, p3, color) {
-            ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.lineTo(p3.x, p3.y); ctx.closePath();
-            ctx.fillStyle = color; ctx.fill();
-        }
-
-        function drawRightAngle(P, Target, Ref, color, size = 10) {
-            const dPT = dist(P, Target), dTR = dist(Target, Ref);
-            if (dPT < 2 || dTR < 2) return;
-            const vPT = { x: (P.x - Target.x) / dPT, y: (P.y - Target.y) / dPT };
-            const vTR = { x: (Ref.x - Target.x) / dTR, y: (Ref.y - Target.y) / dTR };
-            ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 1.2;
-            ctx.moveTo(Target.x + vPT.x * size, Target.y + vPT.y * size);
-            ctx.lineTo(Target.x + vPT.x * size + vTR.x * size, Target.y + vPT.y * size + vTR.y * size);
-            ctx.lineTo(Target.x + vTR.x * size, Target.y + vTR.y * size);
-            ctx.stroke();
-        }
-
-        function drawTick(p1, p2, count = 1, color = "black") {
-            const mid = midpoint(p1, p2);
-            const dx = p2.x - p1.x, dy = p2.y - p1.y;
-            const len = Math.sqrt(dx*dx + dy*dy);
-            if (len < 1) return;
-            const nx = -dy / len, ny = dx / len;
-            ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([]);
-            for(let i=0; i<count; i++) {
-                const offset = (i - (count-1)/2) * 5;
-                ctx.beginPath();
-                ctx.moveTo(mid.x + nx*6 + (dx/len)*offset, mid.y + ny*6 + (dy/len)*offset);
-                ctx.lineTo(mid.x - nx*6 + (dx/len)*offset, mid.y - ny*6 + (dy/len)*offset);
+            function drawRightAngle(P, Target, Ref, color, size = 10) {
+                const dPT = dist(P, Target), dTR = dist(Target, Ref);
+                if (dPT < 2 || dTR < 2) return;
+                const vPT = { x: (P.x - Target.x) / dPT, y: (P.y - Target.y) / dPT };
+                const vTR = { x: (Ref.x - Target.x) / dTR, y: (Ref.y - Target.y) / dTR };
+                ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 1.2;
+                ctx.moveTo(Target.x + vPT.x * size, Target.y + vPT.y * size);
+                ctx.lineTo(Target.x + vPT.x * size + vTR.x * size, Target.y + vPT.y * size + vTR.y * size);
+                ctx.lineTo(Target.x + vTR.x * size, Target.y + vTR.y * size);
                 ctx.stroke();
             }
-        }
 
-        function drawAngleDots(vertex, center, pLeft, pRight, color) {
-            const dVC = dist(vertex, center);
-            if (dVC < 10) return;
-            const vVC = { x: (center.x - vertex.x) / dVC, y: (center.y - vertex.y) / dVC };
-            const radius = 22;
-            const vVL = { x: (pLeft.x - vertex.x) / dist(vertex, pLeft), y: (pLeft.y - vertex.y) / dist(vertex, pLeft) };
-            const vVR = { x: (pRight.x - vertex.x) / dist(vertex, pRight), y: (pRight.y - vertex.y) / dist(vertex, pRight) };
-            const bL = midpoint(vVC, vVL), bR = midpoint(vVC, vVR);
-            const mL = Math.sqrt(bL.x**2+bL.y**2), mR = Math.sqrt(bR.x**2+bR.y**2);
-            ctx.fillStyle = color;
-            ctx.beginPath(); ctx.arc(vertex.x + (bL.x/mL)*radius, vertex.y + (bL.y/mL)*radius, 3, 0, Math.PI*2); ctx.fill();
-            ctx.beginPath(); ctx.arc(vertex.x + (bR.x/mR)*radius, vertex.y + (bR.y/mR)*radius, 3, 0, Math.PI*2); ctx.fill();
-        }
-
-        function render() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = COLORS.grid;
-            for(let i=0; i<canvas.width; i+=40) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
-            for(let j=0; j<canvas.height; j+=40) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(canvas.width,j); ctx.stroke(); }
-
-            if (state.points.length < 3) return requestAnimationFrame(render);
-            const p = state.points, [A, B, C] = p;
-            const sideA = dist(B, C), sideB = dist(A, C), sideC = dist(A, B);
-
-            if (state.toggles.sides) {
-                drawLabel(`c: ${sideC.toFixed(0)}`, midpoint(A,B), COLORS.teal);
-                drawLabel(`a: ${sideA.toFixed(0)}`, midpoint(B,C), COLORS.teal);
-                drawLabel(`b: ${sideB.toFixed(0)}`, midpoint(A,C), COLORS.teal);
-            }
-
-            // 外心
-            const O = getCircumcenter(p);
-            if (O) {
-                if (state.toggles.circumLine) {
-                    ctx.setLineDash([12, 6]); ctx.strokeStyle = COLORS.blue;
-                    const cfg = [{p1:B, p2:C, tick:1}, {p1:A, p2:C, tick:2}, {p1:A, p2:B, tick:3}];
-                    cfg.forEach(c => {
-                        const mid = midpoint(c.p1, c.p2);
-                        ctx.beginPath(); ctx.moveTo(mid.x, mid.y); ctx.lineTo(O.x, O.y); ctx.stroke();
-                        drawRightAngle(O, mid, c.p2, COLORS.blue, 10);
-                        drawTick(c.p1, mid, c.tick, COLORS.blue); drawTick(mid, c.p2, c.tick, COLORS.blue);
-                    });
-                }
-                if (state.toggles.circumcenter) {
-                    const R = dist(O, A);
-                    ctx.setLineDash([4, 4]); ctx.strokeStyle = COLORS.blue;
-                    [A, B, C].forEach(v => { ctx.beginPath(); ctx.moveTo(O.x, O.y); ctx.lineTo(v.x, v.y); ctx.stroke(); });
-                    ctx.setLineDash([]); ctx.beginPath(); ctx.arc(O.x, O.y, R, 0, Math.PI*2); ctx.strokeStyle = COLORS.blue; ctx.lineWidth = 2; ctx.stroke();
-                    drawPoint(O, COLORS.blue, `O (R=${R.toFixed(0)})`);
+            function drawTick(p1, p2, count = 1, color = "black") {
+                const mid = midpoint(p1, p2);
+                const dx = p2.x - p1.x, dy = p2.y - p1.y;
+                const len = Math.sqrt(dx*dx + dy*dy);
+                if (len < 1) return;
+                const nx = -dy / len, ny = dx / len;
+                ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([]);
+                for(let i=0; i<count; i++) {
+                    const offset = (i - (count-1)/2) * 5;
+                    ctx.beginPath();
+                    ctx.moveTo(mid.x + nx*6 + (dx/len)*offset, mid.y + ny*6 + (dy/len)*offset);
+                    ctx.lineTo(mid.x - nx*6 + (dx/len)*offset, mid.y - ny*6 + (dy/len)*offset);
+                    ctx.stroke();
                 }
             }
 
-            // 內心
-            const I = getIncenter(p);
-            if (I) {
-                if (state.toggles.incenterLine) {
-                    ctx.setLineDash([8, 4]); ctx.strokeStyle = COLORS.purple;
-                    const cfg = [{v:A, l:B, r:C, col:COLORS.teal}, {v:B, l:A, r:C, col:COLORS.orange}, {v:C, l:A, r:B, col:COLORS.purple}];
-                    cfg.forEach(c => {
-                        ctx.beginPath(); ctx.moveTo(c.v.x, c.v.y); ctx.lineTo(I.x, I.y); ctx.stroke();
-                        drawAngleDots(c.v, I, c.l, c.r, c.col);
-                    });
+            function drawAngleDots(vertex, center, pLeft, pRight, color) {
+                const dVC = dist(vertex, center);
+                if (dVC < 10) return;
+                const vVC = { x: (center.x - vertex.x) / dVC, y: (center.y - vertex.y) / dVC };
+                const radius = 22;
+                const vVL = { x: (pLeft.x - vertex.x) / dist(vertex, pLeft), y: (pLeft.y - vertex.y) / dist(vertex, pLeft) };
+                const vVR = { x: (pRight.x - vertex.x) / dist(vertex, pRight), y: (pRight.y - vertex.y) / dist(vertex, pRight) };
+                const bL = midpoint(vVC, vVL), bR = midpoint(vVC, vVR);
+                const mL = Math.sqrt(bL.x**2+bL.y**2), mR = Math.sqrt(bR.x**2+bR.y**2);
+                ctx.fillStyle = color;
+                ctx.beginPath(); ctx.arc(vertex.x + (bL.x/mL)*radius, vertex.y + (bL.y/mL)*radius, 3, 0, Math.PI*2); ctx.fill();
+                ctx.beginPath(); ctx.arc(vertex.x + (bR.x/mR)*radius, vertex.y + (bR.y/mR)*radius, 3, 0, Math.PI*2); ctx.fill();
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = COLORS.grid;
+                for(let i=0; i<canvas.width; i+=40) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
+                for(let j=0; j<canvas.height; j+=40) { ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(canvas.width,j); ctx.stroke(); }
+
+                if (state.points.length < 3) return requestAnimationFrame(render);
+                const p = state.points, [A, B, C] = p;
+                const sideA = dist(B, C), sideB = dist(A, C), sideC = dist(A, B);
+
+                if (state.toggles.sides) {
+                    drawLabel(`c: ${sideC.toFixed(0)}`, midpoint(A,B), COLORS.teal);
+                    drawLabel(`a: ${sideA.toFixed(0)}`, midpoint(B,C), COLORS.teal);
+                    drawLabel(`b: ${sideB.toFixed(0)}`, midpoint(A,C), COLORS.teal);
                 }
-                if (state.toggles.incenterArea) {
-                    fillTriangle(I, A, B, "rgba(100, 100, 255, 0.1)"); fillTriangle(I, B, C, "rgba(100, 255, 100, 0.1)"); fillTriangle(I, C, A, "rgba(255, 100, 100, 0.1)");
-                    drawLabel(`比c: ${sideC.toFixed(0)}`, midpoint(I, midpoint(A,B)), COLORS.blue);
-                    drawLabel(`比a: ${sideA.toFixed(0)}`, midpoint(I, midpoint(B,C)), COLORS.green);
-                    drawLabel(`比b: ${sideB.toFixed(0)}`, midpoint(I, midpoint(A,C)), COLORS.red);
+
+                // 外心
+                const O = getCircumcenter(p);
+                if (O) {
+                    if (state.toggles.circumLine) {
+                        ctx.setLineDash([12, 6]); ctx.strokeStyle = COLORS.blue;
+                        const cfg = [{p1:B, p2:C, tick:1}, {p1:A, p2:C, tick:2}, {p1:A, p2:B, tick:3}];
+                        cfg.forEach(c => {
+                            const mid = midpoint(c.p1, c.p2);
+                            ctx.beginPath(); ctx.moveTo(mid.x, mid.y); ctx.lineTo(O.x, O.y); ctx.stroke();
+                            drawRightAngle(O, mid, c.p2, COLORS.blue, 10);
+                            drawTick(c.p1, mid, c.tick, COLORS.blue); drawTick(mid, c.p2, c.tick, COLORS.blue);
+                        });
+                    }
+                    if (state.toggles.circumcenter) {
+                        const R = dist(O, A);
+                        ctx.setLineDash([4, 4]); ctx.strokeStyle = COLORS.blue;
+                        [A, B, C].forEach(v => { ctx.beginPath(); ctx.moveTo(O.x, O.y); ctx.lineTo(v.x, v.y); ctx.stroke(); });
+                        ctx.setLineDash([]); ctx.beginPath(); ctx.arc(O.x, O.y, R, 0, Math.PI*2); ctx.strokeStyle = COLORS.blue; ctx.lineWidth = 2; ctx.stroke();
+                        drawPoint(O, COLORS.blue, `O (R=${R.toFixed(0)})`);
+                    }
                 }
-                if (state.toggles.incenter) {
-                    const projBC = getProjection(I, B, C), r = dist(I, projBC);
-                    ctx.setLineDash([2, 2]); ctx.strokeStyle = COLORS.purple;
-                    [projBC, getProjection(I, A, C), getProjection(I, A, B)].forEach(proj => {
-                        ctx.beginPath(); ctx.moveTo(I.x, I.y); ctx.lineTo(proj.x, proj.y); ctx.stroke();
-                        drawRightAngle(I, proj, (proj === projBC) ? C : B, COLORS.purple, 8);
-                        drawLabel(`r=${r.toFixed(0)}`, midpoint(I, proj), COLORS.purple, true, 9);
-                    });
-                    ctx.setLineDash([]); ctx.beginPath(); ctx.arc(I.x, I.y, r, 0, Math.PI*2); ctx.strokeStyle = COLORS.purple; ctx.lineWidth = 2; ctx.stroke();
-                    drawPoint(I, COLORS.purple, `I (r=${r.toFixed(0)})`);
+
+                // 內心
+                const I = getIncenter(p);
+                if (I) {
+                    if (state.toggles.incenterLine) {
+                        ctx.setLineDash([8, 4]); ctx.strokeStyle = COLORS.purple;
+                        const cfg = [{v:A, l:B, r:C, col:COLORS.teal}, {v:B, l:A, r:C, col:COLORS.orange}, {v:C, l:A, r:B, col:COLORS.purple}];
+                        cfg.forEach(c => {
+                            ctx.beginPath(); ctx.moveTo(c.v.x, c.v.y); ctx.lineTo(I.x, I.y); ctx.stroke();
+                            drawAngleDots(c.v, I, c.l, c.r, c.col);
+                        });
+                    }
+                    if (state.toggles.incenterArea) {
+                        fillTriangle(I, A, B, "rgba(100, 100, 255, 0.1)"); fillTriangle(I, B, C, "rgba(100, 255, 100, 0.1)"); fillTriangle(I, C, A, "rgba(255, 100, 100, 0.1)");
+                        drawLabel(`比c: ${sideC.toFixed(0)}`, midpoint(I, midpoint(A,B)), COLORS.blue);
+                        drawLabel(`比a: ${sideA.toFixed(0)}`, midpoint(I, midpoint(B,C)), COLORS.green);
+                        drawLabel(`比b: ${sideB.toFixed(0)}`, midpoint(I, midpoint(A,C)), COLORS.red);
+                    }
+                    if (state.toggles.incenter) {
+                        const projBC = getProjection(I, B, C), r = dist(I, projBC);
+                        ctx.setLineDash([2, 2]); ctx.strokeStyle = COLORS.purple;
+                        [projBC, getProjection(I, A, C), getProjection(I, A, B)].forEach(proj => {
+                            ctx.beginPath(); ctx.moveTo(I.x, I.y); ctx.lineTo(proj.x, proj.y); ctx.stroke();
+                            drawRightAngle(I, proj, (proj === projBC) ? C : B, COLORS.purple, 8);
+                            drawLabel(`r=${r.toFixed(0)}`, midpoint(I, proj), COLORS.purple, true, 9);
+                        });
+                        ctx.setLineDash([]); ctx.beginPath(); ctx.arc(I.x, I.y, r, 0, Math.PI*2); ctx.strokeStyle = COLORS.purple; ctx.lineWidth = 2; ctx.stroke();
+                        drawPoint(I, COLORS.purple, `I (r=${r.toFixed(0)})`);
+                    }
+                }
+
+                // 重心
+                const G = getCentroid(p);
+                if (G) {
+                    if (state.toggles.centroidLine) {
+                        ctx.setLineDash([6, 3]); ctx.strokeStyle = COLORS.red;
+                        const cfg = [{v:A, s1:B, s2:C, tick:1}, {v:B, s1:A, s2:C, tick:2}, {v:C, s1:A, s2:B, tick:3}];
+                        cfg.forEach(c => {
+                            const mid = midpoint(c.s1, c.s2);
+                            ctx.beginPath(); ctx.moveTo(c.v.x, c.v.y); ctx.lineTo(mid.x, mid.y); ctx.stroke();
+                            drawTick(c.s1, mid, c.tick, COLORS.red); drawTick(mid, c.s2, c.tick, COLORS.red);
+                        });
+                    }
+                    if (state.toggles.centroidArea) {
+                        fillTriangle(G, A, B, "rgba(255, 50, 50, 0.15)"); fillTriangle(G, B, C, "rgba(255, 140, 0, 0.15)"); fillTriangle(G, C, A, "rgba(180, 0, 255, 0.1)");
+                        drawLabel("1/3 Area", midpoint(G, midpoint(A,B)), COLORS.red);
+                        drawLabel("1/3 Area", midpoint(G, midpoint(B,C)), COLORS.orange);
+                        drawLabel("1/3 Area", midpoint(G, midpoint(A,C)), COLORS.purple);
+                    }
+                    if (state.toggles.centroid) {
+                        ctx.setLineDash([]);
+                        const midBC = midpoint(B, C);
+                        drawLabel(`2x:${dist(A,G).toFixed(0)}`, midpoint(A, G), COLORS.red);
+                        drawLabel(`1x:${dist(G,midBC).toFixed(0)}`, midpoint(G, midBC), COLORS.red);
+                        drawPoint(G, COLORS.red, "G (重心)");
+                    }
+                }
+
+                ctx.setLineDash([]); ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath();
+                ctx.lineWidth = 5; ctx.strokeStyle = COLORS.black; ctx.stroke();
+
+                p.forEach((pt, i) => {
+                    const size = 10; ctx.fillStyle = state.draggingIdx === i ? '#fff' : '#000';
+                    ctx.fillRect(pt.x-size, pt.y-size, size*2, size*2); ctx.strokeRect(pt.x-size, pt.y-size, size*2, size*2);
+                    ctx.fillStyle = "#000"; ctx.font = "bold 18px Arial"; ctx.textAlign = "center";
+                    ctx.fillText(String.fromCharCode(65+i), pt.x, pt.y-15);
+                    if (state.toggles.angles) {
+                        const ang = getAngles(p)[i];
+                        drawLabel(`${Math.round(ang)}°`, {x: pt.x, y: pt.y + 32}, COLORS.orange, true, 13);
+                    }
+                });
+                requestAnimationFrame(render);
+            }
+
+            function drawPoint(p, color, label) {
+                const size = 6; ctx.fillStyle = color; ctx.strokeStyle = "#000"; ctx.lineWidth = 1.5;
+                ctx.fillRect(p.x-size, p.y-size, size*2, size*2); ctx.strokeRect(p.x-size, p.y-size, size*2, size*2);
+                ctx.fillStyle = "#000"; ctx.font = "bold 12px Arial"; ctx.textAlign = "left"; ctx.fillText(label, p.x+12, p.y+4);
+            }
+
+            function getAngles(p) {
+                const a = dist(p[1], p[2]), b = dist(p[0], p[2]), c = dist(p[0], p[1]);
+                const calc = (s1, s2, opp) => Math.acos(Math.max(-1, Math.min(1, (s1*s1+s2*s2-opp*opp)/(2*s1*s2)))) * (180/Math.PI);
+                return [calc(b, c, a), calc(a, c, b), calc(a, b, c)];
+            }
+
+            function generateTriangleFromInput() {
+                const a = parseFloat(document.getElementById('inputA').value);
+                const b = parseFloat(document.getElementById('inputB').value);
+                const c = parseFloat(document.getElementById('inputC').value);
+                const err = document.getElementById('errorMsg');
+
+                if (isNaN(a) || isNaN(b) || isNaN(c) || a+b<=c || a+c<=b || b+c<=a) {
+                    err.classList.remove('hidden'); return;
+                }
+                err.classList.add('hidden');
+
+                const cosB = (a*a + c*c - b*b) / (2*a*c);
+                const angleB = Math.acos(cosB);
+                
+                let pts = [
+                    { x: c * Math.cos(angleB), y: -c * Math.sin(angleB) },
+                    { x: 0, y: 0 },
+                    { x: a, y: 0 }
+                ];
+
+                const padding = 100;
+                const scale = Math.min((canvas.width - padding*2) / a, (canvas.height - padding*2) / (c * Math.sin(angleB)));
+                
+                state.points = pts.map(p => ({
+                    x: p.x * scale + canvas.width/2 - (a*scale)/2,
+                    y: p.y * scale + canvas.height/2 + (c * Math.sin(angleB) * scale)/2
+                }));
+            }
+
+            function toggle(key) { state.toggles[key] = !state.toggles[key]; updateUI(); }
+            function clearAll() { for (let key in state.toggles) state.toggles[key] = false; updateUI(); }
+            
+            function updateUI() {
+                for (let key in state.toggles) {
+                    const btn = document.getElementById(`btn-${key}`);
+                    const led = document.getElementById(`led-${key}`);
+                    if (!btn || !led) continue;
+                    const isActive = state.toggles[key];
+                    btn.classList.toggle('toggle-active', isActive);
+                    btn.classList.toggle('toggle-inactive', !isActive);
+                    led.style.backgroundColor = isActive ? getToggleColor(key) : '#d1d5db';
                 }
             }
 
-            // 重心
-            const G = getCentroid(p);
-            if (G) {
-                if (state.toggles.centroidLine) {
-                    ctx.setLineDash([6, 3]); ctx.strokeStyle = COLORS.red;
-                    const cfg = [{v:A, s1:B, s2:C, tick:1}, {v:B, s1:A, s2:C, tick:2}, {v:C, s1:A, s2:B, tick:3}];
-                    cfg.forEach(c => {
-                        const mid = midpoint(c.s1, c.s2);
-                        ctx.beginPath(); ctx.moveTo(c.v.x, c.v.y); ctx.lineTo(mid.x, mid.y); ctx.stroke();
-                        drawTick(c.s1, mid, c.tick, COLORS.red); drawTick(mid, c.s2, c.tick, COLORS.red);
-                    });
-                }
-                if (state.toggles.centroidArea) {
-                    fillTriangle(G, A, B, "rgba(255, 50, 50, 0.15)"); fillTriangle(G, B, C, "rgba(255, 140, 0, 0.15)"); fillTriangle(G, C, A, "rgba(180, 0, 255, 0.1)");
-                    drawLabel("1/3 Area", midpoint(G, midpoint(A,B)), COLORS.red);
-                    drawLabel("1/3 Area", midpoint(G, midpoint(B,C)), COLORS.orange);
-                    drawLabel("1/3 Area", midpoint(G, midpoint(A,C)), COLORS.purple);
-                }
-                if (state.toggles.centroid) {
-                    ctx.setLineDash([]);
-                    const midBC = midpoint(B, C);
-                    drawLabel(`2x:${dist(A,G).toFixed(0)}`, midpoint(A, G), COLORS.red);
-                    drawLabel(`1x:${dist(G,midBC).toFixed(0)}`, midpoint(G, midBC), COLORS.red);
-                    drawPoint(G, COLORS.red, "G (重心)");
-                }
+            function getToggleColor(key) {
+                const map = { angles: COLORS.orange, sides: COLORS.teal, circumcenter: COLORS.blue, circumLine: COLORS.blue, incenter: COLORS.purple, incenterLine: COLORS.purple, incenterArea: COLORS.purple, centroid: COLORS.red, centroidLine: COLORS.red, centroidArea: COLORS.red };
+                return map[key] || '#000';
             }
 
-            ctx.setLineDash([]); ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath();
-            ctx.lineWidth = 5; ctx.strokeStyle = COLORS.black; ctx.stroke();
+            function resetPoints() {
+                const w = canvas.width, h = canvas.height;
+                state.points = [{ x: w*0.5, y: h*0.3 }, { x: w*0.3, y: h*0.75 }, { x: w*0.7, y: h*0.75 }];
+            }
 
-            p.forEach((pt, i) => {
-                const size = 10; ctx.fillStyle = state.draggingIdx === i ? '#fff' : '#000';
-                ctx.fillRect(pt.x-size, pt.y-size, size*2, size*2); ctx.strokeRect(pt.x-size, pt.y-size, size*2, size*2);
-                ctx.fillStyle = "#000"; ctx.font = "bold 18px Arial"; ctx.textAlign = "center";
-                ctx.fillText(String.fromCharCode(65+i), pt.x, pt.y-15);
-                if (state.toggles.angles) {
-                    const ang = getAngles(p)[i];
-                    drawLabel(`${Math.round(ang)}°`, {x: pt.x, y: pt.y + 32}, COLORS.orange, true, 13);
+            function resize() {
+                canvas.width = parent.clientWidth;
+                canvas.height = parent.clientHeight;
+                if (state.points.length === 0) resetPoints();
+            }
+
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const cX = e.touches ? e.touches[0].clientX : e.clientX;
+                const cY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { x: cX - rect.left, y: cY - rect.top };
+            }
+
+            // 事件監聽與綁定
+            window.addEventListener('resize', resize);
+            
+            canvas.addEventListener('mousedown', (e) => {
+                const pos = getMousePos(e);
+                state.points.forEach((pt, i) => { if (dist(pos, pt) < 30) { state.draggingIdx = i; state.dragOffset = { x: pt.x-pos.x, y: pt.y-pos.y }; } });
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (state.draggingIdx !== null) {
+                    const pos = getMousePos(e);
+                    state.points[state.draggingIdx] = { x: Math.max(0, Math.min(canvas.width, pos.x + state.dragOffset.x)), y: Math.max(0, Math.min(canvas.height, pos.y + state.dragOffset.y)) };
                 }
             });
-            requestAnimationFrame(render);
-        }
+            window.addEventListener('mouseup', () => state.draggingIdx = null);
+            canvas.addEventListener('touchstart', (e) => { e.preventDefault(); const pos = getMousePos(e); state.points.forEach((pt, i) => { if (dist(pos, pt) < 40) { state.draggingIdx = i; state.dragOffset = { x: pt.x-pos.x, y: pt.y-pos.y }; } }); }, { passive: false });
+            canvas.addEventListener('touchmove', (e) => { if (state.draggingIdx !== null) { const pos = getMousePos(e); state.points[state.draggingIdx] = { x: Math.max(0, Math.min(canvas.width, pos.x + state.dragOffset.x)), y: Math.max(0, Math.min(canvas.height, pos.y + state.dragOffset.y)) }; } }, { passive: false });
+            window.addEventListener('touchend', () => state.draggingIdx = null);
 
-        function drawPoint(p, color, label) {
-            const size = 6; ctx.fillStyle = color; ctx.strokeStyle = "#000"; ctx.lineWidth = 1.5;
-            ctx.fillRect(p.x-size, p.y-size, size*2, size*2); ctx.strokeRect(p.x-size, p.y-size, size*2, size*2);
-            ctx.fillStyle = "#000"; ctx.font = "bold 12px Arial"; ctx.textAlign = "left"; ctx.fillText(label, p.x+12, p.y+4);
-        }
-
-        function getAngles(p) {
-            const a = dist(p[1], p[2]), b = dist(p[0], p[2]), c = dist(p[0], p[1]);
-            const calc = (s1, s2, opp) => Math.acos(Math.max(-1, Math.min(1, (s1*s1+s2*s2-opp*opp)/(2*s1*s2)))) * (180/Math.PI);
-            return [calc(b, c, a), calc(a, c, b), calc(a, b, c)];
-        }
-
-        function generateTriangleFromInput() {
-            const a = parseFloat(document.getElementById('inputA').value);
-            const b = parseFloat(document.getElementById('inputB').value);
-            const c = parseFloat(document.getElementById('inputC').value);
-            const err = document.getElementById('errorMsg');
-
-            if (isNaN(a) || isNaN(b) || isNaN(c) || a+b<=c || a+c<=b || b+c<=a) {
-                err.classList.remove('hidden'); return;
-            }
-            err.classList.add('hidden');
-
-            const cosB = (a*a + c*c - b*b) / (2*a*c);
-            const angleB = Math.acos(cosB);
+            // 按鈕事件綁定
+            document.getElementById('btnGenerate').onclick = generateTriangleFromInput;
+            document.getElementById('btnClearAll').onclick = clearAll;
+            document.getElementById('btnReset').onclick = resetPoints;
             
-            let pts = [
-                { x: c * Math.cos(angleB), y: -c * Math.sin(angleB) },
-                { x: 0, y: 0 },
-                { x: a, y: 0 }
-            ];
-
-            const padding = 100;
-            const scale = Math.min((canvas.width - padding*2) / a, (canvas.height - padding*2) / (c * Math.sin(angleB)));
-            
-            state.points = pts.map(p => ({
-                x: p.x * scale + canvas.width/2 - (a*scale)/2,
-                y: p.y * scale + canvas.height/2 + (c * Math.sin(angleB) * scale)/2
-            }));
-        }
-
-        function toggle(key) { state.toggles[key] = !state.toggles[key]; updateUI(); }
-        function clearAll() { for (let key in state.toggles) state.toggles[key] = false; updateUI(); }
-        
-        function updateUI() {
-            for (let key in state.toggles) {
+            Object.keys(state.toggles).forEach(key => {
                 const btn = document.getElementById(`btn-${key}`);
-                const led = document.getElementById(`led-${key}`);
-                if (!btn || !led) continue;
-                const isActive = state.toggles[key];
-                btn.classList.toggle('toggle-active', isActive);
-                btn.classList.toggle('toggle-inactive', !isActive);
-                led.style.backgroundColor = isActive ? getToggleColor(key) : '#d1d5db';
-            }
-        }
+                if (btn) btn.onclick = () => toggle(key);
+            });
 
-        function getToggleColor(key) {
-            const map = { angles: COLORS.orange, sides: COLORS.teal, circumcenter: COLORS.blue, circumLine: COLORS.blue, incenter: COLORS.purple, incenterLine: COLORS.purple, incenterArea: COLORS.purple, centroid: COLORS.red, centroidLine: COLORS.red, centroidArea: COLORS.red };
-            return map[key] || '#000';
-        }
-
-        function resetPoints() {
-            const w = canvas.width, h = canvas.height;
-            state.points = [{ x: w*0.5, y: h*0.3 }, { x: w*0.3, y: h*0.75 }, { x: w*0.7, y: h*0.75 }];
-        }
-
-        function setShape(type) {
-            const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
-            if (type === 'equilateral') {
-                const s = Math.min(w, h)*0.5, triH = s*(Math.sqrt(3)/2);
-                state.points = [{ x: cx, y: cy-triH/2 }, { x: cx-s/2, y: cy+triH/2 }, { x: cx+s/2, y: cy+triH/2 }];
-            } else if (type === 'iso_right') {
-                const s = Math.min(w, h)*0.4;
-                state.points = [{ x: cx-s/2, y: cy-s/2 }, { x: cx-s/2, y: cy+s/2 }, { x: cx+s/2, y: cy+s/2 }];
-            } else if (type === 'obtuse') {
-                state.points = [{ x: cx, y: cy-80 }, { x: cx-200, y: cy+120 }, { x: cx+100, y: cy+120 }];
-            }
-        }
-
-        function resize() {
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight;
-            if (state.points.length === 0) resetPoints();
-        }
-
-        function getMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            const cX = e.touches ? e.touches[0].clientX : e.clientX;
-            const cY = e.touches ? e.touches[0].clientY : e.clientY;
-            return { x: cX - rect.left, y: cY - rect.top };
-        }
-
-        canvas.addEventListener('mousedown', (e) => {
-            const pos = getMousePos(e);
-            state.points.forEach((pt, i) => { if (dist(pos, pt) < 30) { state.draggingIdx = i; state.dragOffset = { x: pt.x-pos.x, y: pt.y-pos.y }; } });
-        });
-        window.addEventListener('mousemove', (e) => {
-            if (state.draggingIdx !== null) {
-                const pos = getMousePos(e);
-                state.points[state.draggingIdx] = { x: Math.max(0, Math.min(canvas.width, pos.x + state.dragOffset.x)), y: Math.max(0, Math.min(canvas.height, pos.y + state.dragOffset.y)) };
-            }
-        });
+            // 初始化與啟動
+            resize();
+            updateUI();
+            render();
+        };
+    </script>
+</body>
+</html>
